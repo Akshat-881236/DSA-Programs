@@ -1,0 +1,221 @@
+html { 
+    scroll-behavior: smooth; 
+} 
+
+.head {
+    display: flex; /* Aligns children (text vs dropdown) in a row */
+    justify-content: space-between; /* Pushes text to left, dropdown to right */
+    align-items: center; /* Vertically centers the button with the text */
+    padding: 20px 5%; /* Responsive horizontal padding */
+    background-color: antiquewhite;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Grouping text to keep it on the left */
+.header-text h1, .header-text h3, .header-text p {
+    margin: 5px 0; /* Tightens spacing between title and subtitle */
+}
+
+.header-text h1 {
+    color: #00cccc;
+}
+.header-text h1:hover {
+    color: aquamarine;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.header-text h3 {
+    color: cadetblue;
+}
+
+.header-text h3:hover {
+    color: red;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.header-text p {
+    color:dimgray;
+}
+
+.header-text p:hover {
+    color:rgb(115, 153, 153);
+    transition: color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Dropdown Container */
+.dropdown { 
+    position: relative; 
+    display: inline-block;
+}
+
+/* The Big Button */
+button.dropbtn {
+    color: rgb(128, 21, 0);
+    padding: 15px 30px; /* Makes it a "Big Button" */
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: aqua;
+    border: 2px solid #00cccc;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button.dropbtn:hover {
+    text-decoration: underline;
+    color: green;
+    background-color: burlywood;
+}
+
+/* Dropdown Menu Positioning */
+.dropdown-content { 
+    display: none; 
+    position: absolute; 
+    right: 0; /* Aligns the menu to the right edge of the button */
+    background: #fff; 
+    min-width: 200px; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+    z-index: 100;
+}
+
+.dropdown:hover .dropdown-content { 
+    display: block; 
+}
+
+.dropdown-content a { 
+    color: black; 
+    padding: 12px 16px; 
+    text-decoration: none; 
+    display: block; 
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Tablet Styles (Screens smaller than 1024px) */
+@media (max-width: 1024px) {
+    .head {
+        padding: 15px 3%; /* Reduced side padding from 5% */
+    }
+    .header-text h1 {
+        font-size: 1.8rem; /* Scaled down from desktop size */
+    }
+    .header-text h3 {
+        font-size: 1.2rem;
+    }
+    button.dropbtn {
+        padding: 12px 20px; /* Slightly smaller "Big Button" */
+        font-size: 1rem;
+    }
+    img {
+        justify-content: center;
+    }
+}
+
+/* Mobile Styles (Screens smaller than 768px) */
+@media (max-width: 768px) {
+    .head {
+        flex-direction: column; /* Stack text and button vertically */
+        align-items: flex-start; /* Align items to the left */
+        padding: 15px 20px;
+        gap: 15px; /* Add space between text and button */
+    }
+    
+    .header-text h1 {
+        font-size: 1.5rem; /* Deduction for mobile readability */
+    }
+    
+    .header-text h3 {
+        font-size: 1rem;
+    }
+
+    .dropdown {
+        width: 100%; /* Make button container full width */
+    }
+
+    button.dropbtn {
+        width: 100%; /* Optional: Make button full width on mobile */
+        text-align: center;
+    }
+
+    .dropdown-content {
+        width: 100%; /* Dropdown menu matches button width */
+        right: auto;
+        left: 0;
+    }
+    .logo {
+        justify-content: center;
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
+
+#overlayContainer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.full-img-container {
+    text-align: center;
+    color: white;
+}
+
+.full-img-container img {
+    max-width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.icon-bar {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.icon-bar span {
+    cursor: pointer;
+    font-size: 24px;
+    transition: transform 0.2s;
+}
+
+.icon-bar span:hover { transform: scale(1.2); color: aqua; }
+
+section {
+    background-color: #e8f4f4;
+}
+
+/* If the 'is-framed' class exists, hide the logo */
+.is-framed #logoImg {
+    display: none !important;
+}
+
+/* Ensure other elements expand to fill the space */
+.head {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.css-def-box h3{
+    color: blue;
+    font-size: 20px;
+}
+
+.css-def-box p{
+    color:coral;
+}

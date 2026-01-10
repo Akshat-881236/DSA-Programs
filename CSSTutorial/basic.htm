@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="logo" content="Official Brand Logo">
+    <meta name="description" content="A professional logo representing Akshat Network Hub services.">
+    <title>CSS Basic - Level 1</title>
+    <link rel="stylesheet" href="/DSA-Programs/CSSTutorial/Global.css">
+</head>
+<body>
+    <header class="head">
+    <div class="logo">
+        <img src="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png" alt="Akshat Network Hub Logo" height="90px" onclick="loadProfile()" id="logoImg">
+        <div id="overlayContainer"></div>
+    </div>
+    <!-- Left Side: Text Content -->
+    <div class="header-text">
+        <h1>Akshat Network Hub</h1>
+        <h3>CSS Tutorial</h3>
+        <p class="intro" id="intro"></p>
+    </div>
+
+    <!-- Right Side: Dropdown -->
+    <div class="dropdown">
+        <button class="dropbtn">Quick Navigation</button>
+        <div class="dropdown-content">
+            <a href="#intro">Introduction</a>
+            <a href="#css-intro">CSS Definition</a>
+            <a href="#section3">Contact</a>
+        </div>
+    </div>
+</header>
+<main class="space">
+    <section id="intro">
+        <h1>CSS Tutorial - Level 1 (Basic)</h1>
+        <p>In this blog , we will learn about basic of CSS. Our Complete CSS Tutorial is divided into 4 levels : </p>
+        <ol type="i">
+            <li>Level - 1 ( Basic of CSS ) : Covering Basic Concept and Learning How to integrate CSS in our Html File.</li>
+            <li>Level - 2 ( Core Concept of CSS ) :  Understanding class , section , Selectors , Specificity , Inheritance , Colors , Background and Typography</li>
+            <li>Level - 3 ( Advance & Media CSS ) : The CSS Box Model , Layout & Intermediate Concepts , Flexbox Layout , CSS Grid Layout , Responsive Web Design , Transitions / Transforms / Animations , CSS Frameworks and Preprocessors , CSS Performance and Optimization etc.</li>
+            <li>Level - 4 ( Projects ) : Building Real world project and bringing out your css Knowledge to actions.</li>
+        </ol>
+        <p>This blog completely focus on Level - 1.</p>
+    </section>
+    <section id="css-intro">
+  <h1>CSS ( Cascading Style Sheets )</h1>
+  <div class="css-def-container">
+    <!-- Definition Box -->
+    <div class="css-def-box" id="css-def-box">
+      <div class="css-def active">
+        <h3>Definition :</h3>
+        <p> CSS is a style sheet language used to control the presentation of HTML elements on a web page. CSS allows separation of content and design, improving maintainability and reusability. CSS controls layout, colors, fonts, spacing, responsiveness and visual hierarchy. CSS works using selectors, properties and values applied through cascading and inheritance rules.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+    <script>
+        const taglines = [
+        "Connecting the World, One Network at a Time.",
+        "Learn CSS with Akshat Prasad (Akshat Network Hub).",
+        "Optimizing your website UI by boosting our CSS Knowledge.",
+        "Innovate, Connect, Succeed with Akshat Network Hub.",
+        "Where Technology Meets Excellence.",
+        "Akshat Network Hub: Bridging Distances, Building Futures.",
+        "This tutorial build you basic understanding of CSS.",
+        "Reliable. Fast. Secure. Akshat Network Hub.",
+        "Join the Network Revolution with Akshat Network Hub.",
+        "Shaping the Future of Connectivity.",
+        "Your Network, Our Priority.",
+        "Connecting Ideas, Creating Opportunities."
+        ];
+
+    // Function to update tagline in writing effect
+    let taglineIndex = 0;
+    function updateTagline() {
+    const taglineElement = document.getElementById("intro");
+    taglineElement.textContent = taglines[taglineIndex];
+    taglineIndex = (taglineIndex + 1) % taglines.length;
+    }
+    setInterval(updateTagline, 10000); // Change tagline every 10 seconds
+    updateTagline(); // Initial call
+
+        function loadProfile() {
+    window.location.href = "https://akshat-881236.github.io/LocalRepo/";
+    }
+
+    const logo = document.getElementById('logoImg');
+    const overlay = document.getElementById('overlayContainer');
+    let pressTimer;
+
+    // Function to Show Full UI
+    function showFullUI() {
+        const altText = logo.alt;
+        const metaLogo = document.querySelector('meta[name="logo"]')?.content || "Logo";
+        const metaDesc = document.querySelector('meta[name="description"]')?.content || "No description";
+
+        overlay.style.display = 'flex';
+        overlay.innerHTML = `
+            <div class="full-img-container">
+                <img src="${logo.src}" style="width: 100%;">
+                <h3>${metaLogo}</h3>
+                <p>${altText} - ${metaDesc}</p>
+                <div class="icon-bar">
+                    <span onclick="alert('Details: ${metaDesc}')">ⓘ</span>
+                    <span onclick="downloadImage()">⬇</span>
+                    <span onclick="moveImage()">⇳</span>
+                    <span onclick="document.getElementById('overlayContainer').style.display='none'">✖</span>
+                </div>
+            </div>
+        `;
+    }
+
+    // Interaction Handlers (Desktop Hover & 3-Sec Long Press)
+    logo.addEventListener('mouseenter', showFullUI);
+    logo.addEventListener('touchstart', () => {
+        pressTimer = setTimeout(showFullUI, 3000); // 3-second hold
+    });
+    logo.addEventListener('touchend', () => clearTimeout(pressTimer));
+
+    // Action Functions
+    function downloadImage() {
+        const link = document.createElement('a');
+        link.href = logo.src;
+        link.download = 'Logo-Download.png';
+        link.click();
+    }
+
+    function moveImage() {
+        // Toggles logo position from top-left to top-right as an example
+        logo.style.position = 'absolute';
+        logo.style.right = logo.style.right === '0px' ? 'auto' : '0px';
+        logo.style.left = logo.style.left === '0px' ? 'auto' : '0px';
+    }
+
+
+        if (window.self !== window.top) {
+        document.body.classList.add('is-framed');
+        
+        // Select the logo AND its parent container if it has one
+        const logoElement = document.getElementById('logoImg');
+        if (logoElement) {
+            // If the logo has a specific wrapper div, remove that instead
+            const wrapper = logoElement.closest('.dropdown'); 
+            if (wrapper) {
+                wrapper.remove(); // Removes the wrapper and the image inside
+            } else {
+                logoElement.remove(); // Removes just the image
+            }
+        }
+    }
+
+    
+    </script>
+</body>
+</html>
