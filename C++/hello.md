@@ -19,6 +19,10 @@
 <td>Key Concepts</td>
 <td>Encapsulation, Inheritance, Polymorphism, Abstraction</td>
 </tr>
+<tr>
+<td>Encapsulation</td>
+<td>Encapsulation is wrapping up of data & member functions in a single unit called class.</td>
+</tr>
 </table>
 
 ---
@@ -140,85 +144,215 @@ int main(){
 ```
 It is a headerfile preprocessor that is used to tell the compiler that the program is written in C++ .
 
-# 🧪 C++ Practical Examination Paper  
-## (As per :contentReference[oaicite:0]{index=0} – MDU Standard)
+## 🔹Constructor
 
-**Course:** BCA / B.Sc. (Computer Science) / B.Tech (as applicable)  
-**Subject:** Programming in C++ (Practical)  
-**Time:** 3 Hours  
-**Maximum Marks:** 50  
+Special method invoked automatically at time of object creation. Used for Initialisation .
 
----
+<ul>
+<li> Same name as class </li>
+<li> Constructor doesn't have a return type </li>
+<li> Only called once (automatically) , at object creation </li>
+<li> Memory allocation happens when constructor is called </li>
 
-## Instructions:
-1. Attempt **any FIVE (5)** questions.
-2. Each question carries **equal marks**.
-3. Use proper **indentation, comments, and syntax**.
-4. Write **output** wherever required.
-5. Use only **standard C++** features.
+### Example :
 
----
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
 
-## Q1. Basic C++ Program  
-Write a C++ program to display the message:  
-**“Welcome to C++ Programming”**  
-Explain the role of:
-- `#include <iostream>`
-- `main()` function
+class Teacher {
+private:
+    double salary;
+public:
+// Non - Parameterized 
+    Teacher(){
+        dept = "Computer Science";
+    }
 
----
+    string name;
+    string dept;
+    string subject;
 
-## Q2. Conditional Statement  
-Write a C++ program to input a number from the user and check whether it is:
-- Positive
-- Negative
-- Zero  
+    void changeDept(string newDept){
+        dept = newDept;
+    }
+//setter
+    void setSalary(double newSalary) {
+        salary = newSalary;
+    }
+//getter
+    double getSalary(){
+        return salary;
+    }
+};
 
-Use **if–else if–else** statement.
+class Student {
+    string name;
+    int rollno;
+    string course;
+};
 
----
+int main(){
+    Teacher t1; // constructor call
+    t1.name = "Shradha";
+    t1.subject = "C++";
+    t1.setSalary(25000);
 
-## Q3. Loop-Based Program  
-Write a C++ program to print the **first N natural numbers** and their **sum** using a `for` loop.  
-Take the value of **N** from the user.
+    cout << t1.dept << endl;
+    return 0;
+}
+```
 
----
+## Constructor are of three types :-
+<li>Non-parameterized Constructor </li>
+<li>Parameterized Constructor</li>
+<li>Copy Constructor </li>
 
-## Q4. Function Program  
-Write a C++ program to:
-- Define a function to check whether a number is **prime or not**
-- Call the function from `main()`
+## this Pointer :-
 
----
+<b>this</b> is a special pointer in C++ that points to the current object . 
 
-## Q5. Array Handling  
-Write a C++ program to:
-- Declare an integer array of size 10
-- Input elements from the user
-- Find and display the **largest element** in the array
+<code>this->prop</code> is same as <code>*(this).prop</code>
 
----
+## C++ Examples using <code>this->prop</code> :-
 
-## Q6. String Manipulation  
-Write a C++ program to:
-- Input a string from the user
-- Count and display the **number of vowels** present in the string
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
 
----
+class Teacher {
+private:
+    double salary;
+public:
+    string name;
+    string dept;
+    string subject;
+// Parameterized 
+    Teacher(string name, string dept, string subject, double salary){
+        this->name = name;
+        this->dept = dept;
+        this->subject = subject;
+        this->salary = salary;
+    }
 
-## Q7. Object Oriented Programming  
-Write a C++ program using **class and object** to:
-- Create a class `Employee`
-- Data members: `empId`, `name`, `salary`
-- Member functions to input and display employee details
+    void changeDept(string newDept){
+        dept = newDept;
+    }
+//setter
+    void setSalary(double newSalary) {
+        salary = newSalary;
+    }
+//getter
+    double getSalary(){
+        return salary;
+    }
+    void getInfo(){
+        cout << "Name : " << name << endl;
+        cout << "Subject : " << subject << endl;
+        cout << "Dept : " << dept << endl;
+    }
+};
 
----
+class Student {
+    string name;
+    int rollno;
+    string course;
+};
 
-## Q8. Constructor Concept  
-Write a C++ program to demonstrate the use of a **constructor** by:
-- Initializing data members of a class
-- Displaying the initialized values
+int main(){
+    Teacher t1("Aman", "Computer Science", "C++", 25000);
+    t1.getInfo();
+    return 0;
+}
+```
 
----
+```cpp
+// Output of the Program :-
 
-### ✦✦✦ End of Question Paper ✦✦✦
+Name : Aman
+Subject : C++
+Dept : Computer Science
+```
+
+## Copy Constructor :-
+Special Constructor (default) used to copy properties of one object into another .
+
+``` cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Teacher {
+private:
+    double salary;
+public:
+    string name;
+    string dept;
+    string subject;
+// Parameterized 
+    Teacher(string name, string dept, string subject, double salary){
+        this->name = name;
+        this->dept = dept;
+        this->subject = subject;
+        this->salary = salary;
+    }
+
+// Copy Constructor 
+        Teacher(Teacher &orgObj){ // pass by reference
+            cout << "I'm Custom copy Constructor" << endl;
+            this->name = orgObj.name;
+            this->dept = orgObj.dept;
+            this->subject = orgObj.subject;
+            this->salary = orgObj.salary;
+        }
+
+
+    void changeDept(string newDept){
+        dept = newDept;
+    }
+//setter
+    void setSalary(double newSalary) {
+        salary = newSalary;
+    }
+//getter
+    double getSalary(){
+        return salary;
+    }
+    void getInfo(){
+        cout << "Name : " << name << endl;
+        cout << "Subject : " << subject << endl;
+        cout << "Dept : " << dept << endl;
+    }
+};
+
+class Student {
+    string name;
+    int rollno;
+    string course;
+};
+
+int main(){
+    Teacher t1("Aman", "Computer Science", "C++", 25000);
+    t1.getInfo();
+
+    Teacher t2(t1);
+    t2.getInfo();
+    return 0;
+}
+```
+``` cpp
+// Output of the Program :-
+Name : Aman
+Subject : C++
+Dept : Computer Science
+I'm Custom copy Constructor
+Name : Aman
+Subject : C++
+Dept : Computer Science
+```
+
+#### Type of Copy  Constructor :-
+1. Shallow Copy
+2. Deep Copy
